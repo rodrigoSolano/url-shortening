@@ -1,7 +1,12 @@
 import React from "react";
-import { BannerHome } from "../../components";
+import { BannerHome, ShortenForm } from "../../components";
 const Home = () => {
-  return <BannerHome />;
+  return (
+    <>
+      <BannerHome />
+      <ShortenForm />
+    </>
+  );
 };
 
 export default Home;

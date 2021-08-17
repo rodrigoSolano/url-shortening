@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 const padding = "1.5rem 1rem";
 const navbarHeight = "5rem";
 
