@@ -1,9 +1,10 @@
+import { Navbar } from "./components";
 import GlobalStyle from "./styles/Gobally";
 
 function App() {
   return (
     <>
-      <h1>Hello</h1>
+      <Navbar />
       <GlobalStyle />
     </>
   );
