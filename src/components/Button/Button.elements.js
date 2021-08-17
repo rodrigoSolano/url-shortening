@@ -3,7 +3,7 @@ import styled from "styled-components";
 const padding = "0.5rem 2rem";
 
 export const Button = styled.button`
-  width: 100%;
+  width: ${({ size }) => (size ? "auto" : "100%")};
   height: auto;
   padding: ${padding};
   background-color: hsl(180, 66%, 49%);
