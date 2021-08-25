@@ -1,42 +1,53 @@
-import React, { useState, useEffect, useRef } from "react";
-import { Button } from "../../components";
+import React, { useState, useContext } from "react";
+import LinkContext from "../../context/LinkContext";
+import { Button, GenericInput as Input } from "../../components";
 import {
   Container,
   ShortenFormWrapper,
-  Image,
   Form,
-  InputWrapper,
-  Placeholder,
-  Input,
 } from "./ShorthenForm.elements";
 
 const ShortenForm = () => {
-  const [showPlaceholder, setShowPlaceholder] = useState(true);
-  const inputURL = useRef(null);
-  
-  const handlePlaceHolderClick = () => {
-    setShowPlaceholder(!showPlaceholder);
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [link, setLink] = useState("");
+
+  const { shortenLink } = useContext(LinkContext);
+
+  const handleChange = (e) => {
+    setLink(e.target.value);
   };
 
-  useEffect(() => {
-    if (!showPlaceholder) inputURL.current.focus();
-  }, [showPlaceholder]);
+  const validateLink = () => {
+    if (link === "") {
+      setError(true);
+      setErrorMessage("Please enter a link!");
+      return false;
+    } else {
+      setError(false);
+      setErrorMessage("");
+      return true;
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (validateLink()) {
+      shortenLink(link);
+    }
+  };
 
   return (
     <Container>
       <ShortenFormWrapper>
-        <Image />
-        <Form>
-          <InputWrapper>
-            <Placeholder
-              onClick={handlePlaceHolderClick}
-              show={showPlaceholder}
-            >
-              Shorten a link here...
-            </Placeholder>
-            <Input ref={inputURL} show={!showPlaceholder} />
-          </InputWrapper>
-          <Button>Shorten It!</Button>
+        <Form onSubmit={handleSubmit} error={error}>
+          <Input
+            placeholder="Shorten a link here..."
+            onChange={handleChange}
+            error={error}
+            errorMessage={errorMessage}
+          />
+          <Button onClick={handleSubmit}>Shorten It!</Button>
         </Form>
       </ShortenFormWrapper>
     </Container>

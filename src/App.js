@@ -1,13 +1,16 @@
 import { Navbar } from "./components";
 import { Home } from "./pages";
-import GlobalStyle from "./styles/Gobally";
+import GlobalStyles from "./styles/GlobalStyles";
+import {LinkProvider} from "./context/LinkContext";
 
 function App() {
   return (
     <>
       <Navbar />
-      <Home />
-      <GlobalStyle />
+      <LinkProvider>
+        <Home />
+      </LinkProvider>
+      <GlobalStyles />
     </>
   );
 }

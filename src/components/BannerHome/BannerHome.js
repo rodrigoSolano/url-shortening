@@ -21,7 +21,7 @@ const BannerHome = () => {
           Build your brand's recognition and get detailed insights on how your
           links are perfotming
         </P>
-        <Button size="auto">Get Started</Button>
+        <Button rounded>Get Started</Button>
       </Info>
     </BannerHomeContainer>
   );
